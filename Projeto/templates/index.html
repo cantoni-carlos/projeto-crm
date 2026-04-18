@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cadastro de Clientes</title>
+</head>
+
+<body style="font-family: Arial; background-color: #f5f6fa; margin: 0;">
+
+<div style="max-width: 600px; margin: 60px auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1);">
+
+    <div style="text-align: center; margin-bottom: 25px;">
+
+    <div style="
+        width: 60px;
+        height: 60px;
+        background-color: #dfe6e9;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 10px auto;
+        font-size: 24px;
+        color: #636e72;
+    ">
+        👤
+    </div>
+
+    <h2 style="margin: 0;">Cadastro de Cliente</h2>
+    <p style="color: #888; font-size: 14px;">Gerencie seus contatos de forma simples</p>
+
+</div>
+
+    <form method="POST" action="/adicionar">
+
+        <label>Nome</label><br>
+        <input type="text" name="nome" style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <label>Telefone</label><br>
+        <input type="text" name="telefone" style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <label>Interesse</label><br>
+        <input type="text" name="interesse" style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <label>Status</label><br>
+        <select name="status" style="width: 100%; padding: 10px; margin-bottom: 20px; border-radius: 5px;">
+            <option value="Lead">Lead</option>
+            <option value="Negociação">Negociação</option>
+            <option value="Fechado">Fechado</option>
+            <option value="Perdido">Perdido</option>
+        </select>
+
+        <button type="submit" style="width: 100%; background: #0984e3; color: white; padding: 12px; border: none; border-radius: 5px; font-size: 16px;">
+            Cadastrar Cliente
+        </button>
+
+    </form>
+
+    <div style="margin-top: 20px; text-align: center;">
+        <a href="/clientes" style="text-decoration: none; color: #0984e3;">
+            📊 Ver clientes cadastrados
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>

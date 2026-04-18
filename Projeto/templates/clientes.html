@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HELFER CRM</title>
+
+    <!-- Ícones -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Fonte mais profissional -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body style="margin:0; font-family:'Inter', Arial; background:#eef1f5; display:flex;">
+
+<!-- SIDEBAR -->
+<div style="
+    width:260px;
+    background: linear-gradient(180deg, #1e2a38, #0f1720);
+    color:white;
+    height:100vh;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+">
+
+<!-- LOGO PEQUENA -->
+<div style="
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:35px;
+">
+    <img src="{{ url_for('static', filename='logo.png') }}"
+         style="width:102px;">
+
+    <div>
+        <div style="font-weight:600; font-size:15px;">
+            HELFER CRM
+        </div>
+        <div style="font-size:11px; color:#b0bec5;">
+            Personal CRM
+        </div>
+    </div>
+</div>
+
+<!-- LOGO GRANDE -->
+<div style="
+    text-align:center;
+    margin-bottom:50px;
+">
+    <img src="{{ url_for('static', filename='logo.png') }}"
+         style="
+            width:400px;
+            max-width:100%;
+            filter: drop-shadow(0px 8px 15px rgba(0,0,0,0.4));
+         ">
+</div>
+
+    <!-- MENU -->
+    <div style="flex:1;">
+
+        <a href="/clientes" style="
+            display:flex;
+            align-items:center;
+            gap:10px;
+            padding:12px;
+            border-radius:8px;
+            background:#223047;
+            color:white;
+            text-decoration:none;
+            margin-bottom:10px;
+        ">
+            <span class="material-icons">dashboard</span>
+            Dashboard
+        </a>
+
+        <a href="/logout" style="
+            display:flex;
+            align-items:center;
+            gap:10px;
+            padding:12px;
+            border-radius:8px;
+            color:#cfd8dc;
+            text-decoration:none;
+        ">
+            <span class="material-icons">logout</span>
+            Logout
+        </a>
+
+    </div>
+
+</div>
+
+<!-- CONTEÚDO -->
+<div style="flex:1; padding:30px;">
+
+    <!-- HEADER -->
+    <div style="
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        margin-bottom:25px;
+    ">
+        <h2 style="margin:0;">Clientes</h2>
+
+        <div style="
+            display:flex;
+            align-items:center;
+            gap:10px;
+            color:#555;
+        ">
+            <span class="material-icons">account_circle</span>
+            <div>
+                <strong>{{ session['usuario_nome'] }}</strong><br>
+                <span style="font-size:12px; color:#888;">
+                    {{ session['usuario_tipo'] }}
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOTÃO -->
+    <div style="margin-bottom:20px;">
+        <button style="
+            background: linear-gradient(90deg,#3b82f6,#2563eb);
+            color:white;
+            border:none;
+            padding:12px 18px;
+            border-radius:8px;
+            font-weight:600;
+            cursor:pointer;
+        ">
+            + Novo Cliente
+        </button>
+    </div>
+
+    <!-- FORM -->
+    <div style="
+        background:white;
+        padding:15px;
+        border-radius:10px;
+        margin-bottom:20px;
+        box-shadow:0 2px 10px rgba(0,0,0,0.05);
+    ">
+        <form method="POST" style="display:flex; gap:10px; flex-wrap:wrap;">
+
+            <input name="nome" placeholder="Nome" required
+            style="flex:1; padding:10px; border-radius:6px; border:1px solid #ddd;">
+
+            <input name="telefone" placeholder="Telefone" required
+            style="flex:1; padding:10px; border-radius:6px; border:1px solid #ddd;">
+
+            <input name="interesse" placeholder="Interesse"
+            style="flex:1; padding:10px; border-radius:6px; border:1px solid #ddd;">
+
+            <select name="status"
+            style="padding:10px; border-radius:6px; border:1px solid #ddd;">
+                <option>Lead</option>
+                <option>Negociação</option>
+                <option>Fechado</option>
+                <option>Perdido</option>
+            </select>
+
+            <button type="submit"
+            style="background:#3b82f6; color:white; border:none; padding:10px 15px; border-radius:6px;">
+                Salvar
+            </button>
+
+        </form>
+    </div>
+
+    <!-- TABELA -->
+    <div style="
+        background:white;
+        border-radius:12px;
+        padding:20px;
+        box-shadow:0 4px 15px rgba(0,0,0,0.05);
+    ">
+
+        <table style="width:100%; border-collapse:collapse;">
+
+            <tr style="color:#888; text-align:left;">
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>Interesse</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+
+            {% for cliente in clientes %}
+            <tr style="border-top:1px solid #eee;">
+                <td style="padding:12px 0;">{{ cliente[1] }}</td>
+                <td>{{ cliente[2] }}</td>
+                <td>{{ cliente[3] }}</td>
+
+                <td>
+                    {% if cliente[4] == 'Fechado' %}
+                        <span style="background:#d1fae5; color:#065f46; padding:5px 12px; border-radius:20px;">Fechado</span>
+                    {% elif cliente[4] == 'Negociação' %}
+                        <span style="background:#fef3c7; color:#92400e; padding:5px 12px; border-radius:20px;">Negociação</span>
+                    {% elif cliente[4] == 'Lead' %}
+                        <span style="background:#dbeafe; color:#1e40af; padding:5px 12px; border-radius:20px;">Lead</span>
+                    {% else %}
+                        <span style="background:#fee2e2; color:#991b1b; padding:5px 12px; border-radius:20px;">Perdido</span>
+                    {% endif %}
+                </td>
+
+                <td>
+                    <a href="/editar/{{ cliente[0] }}"
+                       style="background:#1f2937; color:white; padding:6px 10px; border-radius:6px; text-decoration:none;">
+                        Editar
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>
