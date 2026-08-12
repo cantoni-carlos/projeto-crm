@@ -6,3 +6,6 @@ __pycache__/
 desktop.ini
 Desktop.ini
 Thumbs.db
+
+# Banco de dados local
+crm.db
