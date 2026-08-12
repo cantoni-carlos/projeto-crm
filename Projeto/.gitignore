@@ -1,0 +1,8 @@
+# Python
+__pycache__/
+*.pyc
+
+# Windows
+desktop.ini
+Desktop.ini
+Thumbs.db
