@@ -1,0 +1,23 @@
+import sqlite3
+
+conn = sqlite3.connect('crm.db')
+cursor = conn.cursor()
+
+# Apaga os clientes/cadastros
+cursor.execute('DELETE FROM clientes')
+
+# Apaga os usuários (Admin e Funcionários)
+cursor.execute('DELETE FROM usuarios')
+
+# Apaga as empresas
+cursor.execute('DELETE FROM empresas')
+
+# Reinicia os IDs AUTOINCREMENT
+cursor.execute("DELETE FROM sqlite_sequence WHERE name='clientes'")
+cursor.execute("DELETE FROM sqlite_sequence WHERE name='usuarios'")
+cursor.execute("DELETE FROM sqlite_sequence WHERE name='empresas'")
+
+conn.commit()
+conn.close()
+
+print("Banco de dados limpo com sucesso!")
