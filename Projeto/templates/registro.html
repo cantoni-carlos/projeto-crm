@@ -1,42 +1,120 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Registro</title>
+    <title>Registro - HELFER</title>
 </head>
 
-<body style="font-family: Arial; background: #f5f6fa; margin: 0;">
+<body style="
+    font-family: Arial;
+    background: linear-gradient(120deg, #dbeafe, #93c5fd);
+    margin: 0;
+">
 
-<div style="max-width: 400px; margin: 100px auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); text-align: center;">
+<div style="
+    max-width: 420px;
+    margin: 100px auto;
+    background: white;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0px 15px 40px rgba(0,0,0,0.25);
+    text-align: center;
+">
+    <!-- LOGO -->
+    <img src="{{ url_for('static', filename='logo.png') }}"
+         style="width: 120px; margin-bottom: 15px;">
 
-    <h2 style="margin-bottom: 20px;">📝 Criar Conta</h2>
+    <h2 style="margin-bottom: 5px;">Criar Conta</h2>
+    <p style="color:#777; font-size: 14px; margin-bottom: 25px;">
+        Comece a usar o HELFER CRM
+    </p>
 
-<form method="POST">
+    <!-- ERRO BACKEND -->
+    {% if erro %}
+        <div style="
+            background:#ffe6e6;
+            color:#c0392b;
+            padding:10px;
+            border-radius:6px;
+            margin-bottom:15px;
+            font-size:14px;
+        ">
+            {{ erro }}
+        </div>
+    {% endif %}
 
-    <input type="text" name="nome" placeholder="Nome" required
-    style="width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 5px; border: 1px solid #ccc;">
+    <form method="POST">
 
-    <input type="email" name="email" placeholder="Email" required
-    style="width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 5px; border: 1px solid #ccc;">
+        <input type="text" name="empresa" placeholder="Nome da empresa" required
+        style="width:100%; padding:12px; margin-bottom:12px; border-radius:6px; border:1px solid #ccc;">
 
-    <input type="password" name="senha" placeholder="Senha" required
-    style="width: 100%; padding: 10px; margin-bottom: 20px; border-radius: 5px; border: 1px solid #ccc;">
+        <input type="text" name="nome" placeholder="Nome completo" required
+        style="width:100%; padding:12px; margin-bottom:12px; border-radius:6px; border:1px solid #ccc;">
 
-    <button type="submit"
-    style="width: 100%; background: #0984e3; color: white; padding: 12px; border: none; border-radius: 5px;">
-        Registrar
-    </button>
+        <input type="email" name="email" placeholder="Email" required
+        style="width:100%; padding:12px; margin-bottom:12px; border-radius:6px; border:1px solid #ccc;">
 
-</form>
+        <input type="password" name="senha" id="senha" placeholder="Senha" required
+        onkeyup="validarSenha()"
+        style="width:100%; padding:12px; margin-bottom:10px; border-radius:6px; border:1px solid #ccc;">
+
+        <!-- REGRAS DA SENHA -->
+        <div style="text-align:left; font-size:13px; color:#555; margin-bottom:15px;">
+            <div id="regra1">❌ Mínimo 6 caracteres</div>
+            <div id="regra2">❌ Letra maiúscula</div>
+            <div id="regra3">❌ Letra minúscula</div>
+            <div id="regra4">❌ Número</div>
+            <div id="regra5">❌ Caractere especial</div>
+        </div>
+
+        <button type="submit"
+        style="
+            width:100%;
+            background: linear-gradient(90deg,#3b82f6,#2563eb);
+            color:white;
+            padding:12px;
+            border:none;
+            border-radius:6px;
+            font-weight:bold;
+            cursor:pointer;
+        ">
+            Criar Conta
+        </button>
 
     </form>
 
     <br>
 
-    <a href="/login" style="text-decoration: none; color: #34495e;">
+    <a href="/login" style="text-decoration:none; color:#3b82f6; font-size:14px;">
         Já tenho conta
     </a>
 
 </div>
+
+<!-- SCRIPT VALIDAÇÃO -->
+<script>
+function validarSenha() {
+    let senha = document.getElementById("senha").value;
+
+    let regras = [
+        {regex: /.{6,}/, id: "regra1"},
+        {regex: /[A-Z]/, id: "regra2"},
+        {regex: /[a-z]/, id: "regra3"},
+        {regex: /[0-9]/, id: "regra4"},
+        {regex: /[\W_]/, id: "regra5"},
+    ];
+
+    regras.forEach(r => {
+        let el = document.getElementById(r.id);
+        if (r.regex.test(senha)) {
+            el.innerHTML = "✅ " + el.innerText.substring(2);
+            el.style.color = "green";
+        } else {
+            el.innerHTML = "❌ " + el.innerText.substring(2);
+            el.style.color = "red";
+        }
+    });
+}
+</script>
 
 </body>
 </html>
