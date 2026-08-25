@@ -1,14 +1,17 @@
-# Projeto CRM
+# CRM Project
 
-Sistema web para gerenciamento de clientes e veículos, desenvolvido como projeto prático durante meus estudos em tecnologia e programação.
+A web-based customer and vehicle management system developed as a
+practical project during my technology studies.
 
-## Sobre o projeto
+## About the project
 
-O Projeto CRM foi desenvolvido para aplicar na prática conceitos de desenvolvimento web, lógica de programação, banco de dados e gerenciamento de informações.
+This project was developed to apply concepts related to web development,
+programming logic, database integration, and information management.
 
-A aplicação permite organizar informações relacionadas a clientes e veículos por meio de uma interface web.
+The application allows users to organize customer and vehicle information
+through a web interface.
 
-## Tecnologias utilizadas
+## Technologies used
 
 - Python
 - Flask
@@ -17,19 +20,21 @@ A aplicação permite organizar informações relacionadas a clientes e veículo
 - SQLite
 - Git/GitHub
 
-## Principais conceitos aplicados
+## Main concepts applied
 
-- Desenvolvimento de aplicações web
-- Integração com banco de dados
-- Operações CRUD
-- Autenticação de usuários
-- Organização de informações
-- Estruturação de processos de negócio
+- Web application development
+- Database integration
+- CRUD operations
+- User authentication
+- Information organization
+- Business process structuring
 
-## Objetivo
+## Objective
 
-Este projeto faz parte do meu processo de aprendizado em tecnologia e representa uma aplicação prática dos conhecimentos adquiridos em programação, bancos de dados e desenvolvimento web.
+This project is part of my technology learning process and represents a
+practical application of concepts acquired through programming, databases,
+and web development studies.
 
 ## Status
 
-Projeto em desenvolvimento.
+Project in development.
